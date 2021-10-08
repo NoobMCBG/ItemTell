@@ -9,7 +9,9 @@ commands:
  giveitemtell:
     description: "Command give tell item for players"
     aliases: [giveitem, git]
-    default: op
-    usage: "/giveitem"
-
-
+    usage: "/giveitemtell <player>"
+    
+permission:
+  itemtell.command.give:
+     description: Permission use command /giveitemtell
+     default: op
