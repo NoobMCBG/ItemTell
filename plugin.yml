@@ -1,0 +1,15 @@
+﻿name: ItemTell
+main: NoobMCBG\ItemTell\Main
+version: 1.0.0
+api: [3.0.0, 4.0.0]
+load: POSTWORLD
+author: NoobMCBG
+
+commands: 
+ giveitemtell:
+    description: "Command give tell item for players"
+    aliases: [giveitem, git]
+    default: op
+    usage: "/giveitem"
+
+
