@@ -1,4 +1,4 @@
-# ItemTell
+# ItemTell | v1.0.0
 When You Use Item You Fill In config.yml They will show up Menu using command /tell or /msg
 <br>
 
