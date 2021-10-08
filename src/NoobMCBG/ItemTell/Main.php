@@ -32,7 +32,7 @@ class Main extends PB implements L {
 	public function onEnable(){
 		@mkdir($this->getDataFolder());
 		$this->getServer()->getPluginManager()->registerEvents($this,$this);
-	    $this->user = new Config($this->getDataFolder() . "item.yml", Config::YAML);
+	        $this->user = new Config($this->getDataFolder() . "item.yml", Config::YAML);
 		$this->saveResource("config.yml");
 		$cfg = new Config($this->getDataFolder() . "config.yml", Config::YAML);
 		$cfg->save();
@@ -51,24 +51,24 @@ class Main extends PB implements L {
 	
 	public function getNameItem($player){
 		if($player instanceof Player){
-			$name = $player->getName();
+	        $name = $player->getName();
 		}
 		$this->user->load($this->getDataFolder() . "item.yml", Config::YAML);
 		$cfg = new Config($this->getDataFolder() . "config.yml", Config::YAML);
 		$cfg->save();
-	    $itemname = $cfg->get("item-name");
+	        $itemname = $cfg->get("item-name");
 		return $itemname;
 	}
 	
 	public function getLore(){
-		$cfg = new Config($this->getDataFolder() . "config.yml", Config::YAML);
-		$cfg->save();
+	    $cfg = new Config($this->getDataFolder() . "config.yml", Config::YAML);
+	    $cfg->save();
 	    $lore = $cfg->get("item-lore");
 	    return $lore;
     }
 	
 	public function onCommand(CommandSender $sender, Command $cmd, string $label, array $args) : bool{
-        $cfg = new Config($this->getDataFolder() . "config.yml", Config::YAML);
+                $cfg = new Config($this->getDataFolder() . "config.yml", Config::YAML);
 		$cfg->save();
 		switch($cmd->getName()){
 		       case "giveitemtell":
@@ -84,7 +84,7 @@ class Main extends PB implements L {
                           if($player->isOnline()) {
                               $p = $player;
                               $inv = $player->getInventory();
-				              $item = Item::get($cfg->get("item-id"), $cfg->get("item-meta"), $cfg->get("item-amount"));
+			      $item = Item::get($cfg->get("item-id"), $cfg->get("item-meta"), $cfg->get("item-amount"));
                               $itemname = $this->getNameItem($player);
                               $item->setCustomName($itemname);
                               $item->setLore(array($this->getLore()));
@@ -104,14 +104,12 @@ class Main extends PB implements L {
                 $inventory = $player->getInventory();
                 $pn = $player->getName();
                 $name = $pn;
-                $level = $player->getLevel();
-		 
-		if ($cfg->get("joinItem") == "true"){
-			
-		  $i = Item::get(328, 0, 1);
+                $level = $player->getLevel();	 
+		if ($cfg->get("joinItem") == "true"){	
+		  $i = Item::get($cfg->get("item-id"), $cfg->get("item-meta"), $cfg->get("item-amount"));
 		  $i->setCustomName($this->getNameItem($player));
 		  $i->setLore(array($this->getLore()));
-          $inventory->addItem($i);
+                  $inventory->addItem($i);
 		}
 	}
 	
@@ -119,10 +117,10 @@ class Main extends PB implements L {
 		$cfg = new Config($this->getDataFolder() . "config.yml", Config::YAML);
 		$cfg->save();
 		$player = $event->getPlayer();
-        $name = $player->getName();
+                $name = $player->getName();
 		$item = $player->getInventory()->getItemInHand();
 		if ($item->getCustomName() == $cfg->get("item-name")){
-			$this->ItemForm($player);
+		    $this->ItemForm($player);
 		}
 	 }
 	 
@@ -130,13 +128,13 @@ class Main extends PB implements L {
 		$cfg = new Config($this->getDataFolder() . "config.yml", Config::YAML);
 		$cfg->save();
 		$form = new CustomForm(function (Player $player, $data){
-			if(!$data == null){
-			$this->getServer()->getCommandMap()->dispatch($player, "tell ".$data[0]." ".$data[1]);
+	        if(!$data == null){
+	            $this->getServer()->getCommandMap()->dispatch($player, "tell ".$data[0]." ".$data[1]);
 			}
 		});
 		$form->setTitle("Menu Tell");
 		$form->addInput("§l§c[!]§b Player Tell", "Name...");
-        $form->addInput("§l§c[!]§b Messages Tell", "Hey... !");
+                $form->addInput("§l§c[!]§b Messages Tell", "Hey... !");
 		$form->sendToPlayer($player);
 	}
 }
